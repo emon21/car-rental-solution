@@ -21,6 +21,9 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
+        'role',
+        'phone',
+        'address',
     ];
 
     /**
@@ -42,4 +45,19 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
         'password' => 'hashed',
     ];
+
+    # Relationship
+   
+
+    public function rental(){
+        return $this->hasMany(Rental::class);
+    }
+
+    public function isAdmin(){
+        return $this->role == 'admin';
+    }
+    
+    public function isCustomer(){
+        return $this->role == 'customer';
+    }
 }
