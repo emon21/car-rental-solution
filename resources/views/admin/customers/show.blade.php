@@ -41,8 +41,8 @@
                         <td>{{ $item->status}}</td>
                         <td>
                             <div class="d-flex gap-3">
-                    <a href="{{ route('rentals.edit',$item->id) }}" class="btn btn-primary">Edit</a>
-                    <form action="{{ route('rentals.destroy',$item->id) }}" method="post">
+                    <a href="{{ route('rental.edit',$item->id) }}" class="btn btn-primary">Edit</a>
+                    <form action="{{ route('rental.destroy',$item->id) }}" method="post">
                         @csrf
                         @method('DELETE')
                         <button type="submit" class="btn btn-danger">Delete</button>

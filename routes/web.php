@@ -68,7 +68,7 @@ Route::middleware(['auth', 'adminRole:admin'])->prefix('admin')->group(function 
 
 
 //customer all route
-Route::middleware(['auth', 'customerRole:admin'])->prefix('customer')->group(function () {
+Route::middleware(['auth', 'customerRole:customer'])->prefix('customer')->group(function () {
 
     // Route::get('/dashboard', [CustomerController::class, 'index']);
     Route::get('/dashboard', function () {

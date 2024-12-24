@@ -4,13 +4,14 @@
     <div class="rounded h-100 p-4">
         <div class="clearfix">
             <div class="float-start"><h6 class="mb-4">Create Rental</h6></div>
-            <div class="float-end"><a href="{{ url('/admin/rentals/') }}" class="btn btn-success mb-3">Back</a></div>
+            <div class="float-end"><a href="{{ url('/admin/rental/') }}" class="btn btn-success mb-3">Back</a></div>
         </div>
 
-        <form action="{{ route('rentals.store') }}" method="POST" enctype="multipart/form-data">
+        <form action="{{ route('rental.store') }}" method="POST" enctype="multipart/form-data">
             @csrf
 
             <div class="row gap-2">
+                <!-- customer start -->
                 <div class="form-group">
                     <label for="user_id">Customer</label>
                     <select class="form-control" id="user_id" name="user_id" required>
@@ -25,6 +26,9 @@
                         <span class="text-danger">{{ $message }}</span>
                     @enderror
                 </div>
+                <!-- customer end -->
+
+                <!-- Cars start -->
                 <div class="form-group">
                     <label for="car_id">Car</label>
                     <select class="form-control" id="car_id" name="car_id" required>
@@ -38,6 +42,8 @@
                         <span class="text-danger">{{ $message }}</span>
                     @enderror
                 </div>
+                <!-- Cars End -->
+
                 <div class="form-group">
                     <label for="start_date">Start Date</label>
                     <input class="form-control" id="start_date" name="start_date" type="date" min="{{ \Carbon\Carbon::now()->format('Y-m-d') }}" value="{{ old('start_date') }}" required>

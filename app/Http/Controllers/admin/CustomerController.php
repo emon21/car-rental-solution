@@ -111,7 +111,7 @@ class CustomerController extends Controller
             return redirect()->route('customer.index')->with('error', 'Customer Can Not be Deleted because they have a rental History');
         }
         $customer->delete();
-        return redirect()->route('admin.customer')->with('success','Customer Deleted Successfully');
+        return redirect()->route('customer.index')->with('success','Customer Deleted Successfully');
      
     }
 }

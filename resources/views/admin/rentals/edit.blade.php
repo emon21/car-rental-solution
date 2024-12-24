@@ -4,10 +4,10 @@
     <div class="rounded h-100 p-4">
         <div class="clearfix">
             <div class="float-start"><h6 class="mb-4">Update Rental</h6></div>
-            <div class="float-end"><a href="{{ url('/admin/rentals/') }}" class="btn btn-success mb-3">Back</a></div>
+            <div class="float-end"><a href="{{ url('/admin/rental/') }}" class="btn btn-success mb-3">Back</a></div>
         </div>
 
-        <form action="{{ route('rentals.update',$rental->id) }}" method="POST" enctype="multipart/form-data">
+        <form action="{{ route('rental.update',$rental->id) }}" method="POST" enctype="multipart/form-data">
             @csrf
             @method('PUT')
 
