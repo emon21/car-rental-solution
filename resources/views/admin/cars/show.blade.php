@@ -5,7 +5,7 @@
     <div class="rounded h-100 p-4">
         <div class="clearfix">
             <div class="float-start"><h6 class="mb-4">Car Details</h6></div>
-            <div class="float-end"><a href="{{ url('/admin/cars/') }}" class="btn btn-success mb-3">Back</a></div>
+            <div class="float-end"><a href="{{ url('/admin/car/') }}" class="btn btn-success mb-3">Back</a></div>
         </div>
 
         <div class="card">

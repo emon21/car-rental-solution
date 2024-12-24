@@ -4,9 +4,9 @@
     <div class="rounded h-100 p-4">
         <div class="clearfix">
             <div class="float-start"><h6 class="mb-4">Edit Customer</h6></div>
-            <div class="float-end"><a href="{{ url('/admin/customers') }}" class="btn btn-success mb-3">Back</a></div>
+            <div class="float-end"><a href="{{ url('/admin/customer') }}" class="btn btn-success mb-3">Back</a></div>
         </div>
-        <form action="{{ route('customers.update',$customer->id) }}" method="POST" enctype="multipart/form-data">
+        <form action="{{ route('customer.update',$customer->id) }}" method="POST" enctype="multipart/form-data">
             @csrf
             @method('PUT')
 

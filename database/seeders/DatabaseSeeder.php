@@ -20,7 +20,10 @@ class DatabaseSeeder extends Seeder
         // ]);
 
         #seeder apply
-        $this->call(UserSeeder::class);
-       
+        $this->call([
+            UserSeeder::class,
+            CarSeeder::class,
+
+        ]);
     }
 }

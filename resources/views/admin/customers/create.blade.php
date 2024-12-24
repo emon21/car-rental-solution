@@ -4,10 +4,10 @@
     <div class="rounded h-100 p-4">
         <div class="clearfix">
             <div class="float-start"><h6 class="mb-4">Create Car</h6></div>
-            <div class="float-end"><a href="{{ url('/admin/cars/') }}" class="btn btn-success mb-3">Back</a></div>
+            <div class="float-end"><a href="{{ url('/admin/car/') }}" class="btn btn-success mb-3">Back</a></div>
         </div>
 
-        <form action="{{ route('customers.store') }}" method="POST" enctype="multipart/form-data">
+        <form action="{{ route('customer.store') }}" method="POST" enctype="multipart/form-data">
             @csrf
 
             <div class="form-group mb-2">
@@ -18,6 +18,10 @@
             <div class="form-group mb-2">
                 <label class="form-label" for="email">Customer email</label>
                 <input class="form-control" name="email" type="email" value="">
+            </div>
+            <div class="form-group mb-2">
+                <label class="form-label" for="password">Customer Password</label>
+                <input class="form-control" name="password" type="password" value="">
             </div>
 
             <div class="form-group mb-2">
