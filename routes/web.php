@@ -1,11 +1,12 @@
 <?php
 
-use App\Http\Controllers\admin\CustomerController;
-use App\Http\Controllers\admin\DashboardController;
-use App\Http\Controllers\frontend\PageController;
-use App\Http\Controllers\ProfileController;
 use GuzzleHttp\Psr7\Request;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\frontend\PageController;
+use App\Http\Controllers\admin\CustomerController;
+use App\Http\Controllers\admin\DashboardController;
+use App\Http\Controllers\frontend\CustomerDashboardController;
 
 /*
 |--------------------------------------------------------------------------
@@ -24,6 +25,7 @@ Route::get('/', function () {
 
 Route::get('/dashboard', function () {
     return view('dashboard');
+    
 })->middleware(['auth', 'verified'])->name('dashboard');
 
 Route::middleware('auth')->group(function () {
@@ -53,7 +55,7 @@ require __DIR__ . '/auth.php';
 // });
 
 
-Route::middleware(['auth', 'adminRole:admin'])->prefix('admin')->group(function () {
+Route::middleware(['auth','adminRole:admin'])->prefix('admin')->group(function () {
 
     // Route::get('/cars', function () {
     //     return view('admin.cars.index');
@@ -68,12 +70,26 @@ Route::middleware(['auth', 'adminRole:admin'])->prefix('admin')->group(function 
 
 
 //customer all route
-Route::middleware(['auth', 'customerRole:customer'])->prefix('customer')->group(function () {
+Route::middleware(['auth','customerRole:customer'])->prefix('customer')->group(function () {
 
     // Route::get('/dashboard', [CustomerController::class, 'index']);
     Route::get('/dashboard', function () {
-        return "Customer Dashboard";
+        return view('frontend.customer_dashboard.customer_dashboard');
     });
+
+
+    Route::get('/logout', [CustomerDashboardController::class, 'Logout'])->name('customer.logout');
+
+
+    Route::get('/rentals', ['App\Http\Controllers\Frontend\RentalController', 'index'])->name('customer.rentals');
+
+    Route::get('/rental-history', [CustomerDashboardController::class, 'RentalHistory'])->name('customer.rentals.history');
+
+    Route::post('/rentals', ['App\Http\Controllers\Frontend\RentalController', 'store'])->name('customer.rental');
+    
+    //canceled booking
+    Route::post('/cancel-booking/{rental}', ['App\Http\Controllers\Frontend\RentalController', 'CancelBooking'])->name('cancelBooking');
+
 });
 
 
@@ -83,4 +99,5 @@ Route::get('/', [PageController::class, 'Home'])->name('frontend.home');
 Route::get('/about', [PageController::class, 'About'])->name('frontend.about');
 Route::get('/contact', [PageController::class, 'Contact'])->name('frontend.contact');
 Route::get('/rentals', [PageController::class, 'Rental'])->name('frontend.rentals');
+Route::get('/cars', [PageController::class, 'Cars'])->name('frontend.cars');
 Route::get('/cars/{id}', [PageController::class, 'Details'])->name('car.details');

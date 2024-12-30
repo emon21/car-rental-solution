@@ -28,7 +28,7 @@ class UserSeeder extends Seeder
             [
                 'name' => 'Customer',
                 'email' => 'customer@mail.com',
-                'role' => 'admin',
+                'role' => 'customer',
                 // 'password' => hash('bcrypt', 'password'),
                 'password' => Hash::make('1234'),
 

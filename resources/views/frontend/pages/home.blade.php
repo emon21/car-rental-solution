@@ -22,38 +22,23 @@
         <div class="container">
             <h2 class="text-center mb-4">Featured Cars</h2>
             <div class="row">
+                @forelse ($cars as $item)
+                    <div class="col-md-4">
+                    <div class="card border border-success">
+                        <img src="{{ asset($item->image) }}" class="card-img-top h-32 w-20 py-3" alt="Car 1" height="180" width="120">
+                        <div class="card-body">
+                            <h5 class="card-title">{{ $item->name }}</h5>
+                            <p class="card-text">Brand: {{ $item->brand }}<br>Daily Rent: ${{ $item->daily_rent_price }}</p>
+                            <a href="{{ route('frontend.rentals') }}" class="btn btn-outline-primary">Rent Now</a>
+                        </div>
+                    </div>
+                </div>
+                @empty
 
-                <div class="col-md-4">
-                    <div class="card">
-                        <img src="https://via.placeholder.com/350x200" class="card-img-top" alt="Car 1">
-                        <div class="card-body">
-                            <h5 class="card-title">Luxury Sedan</h5>
-                            <p class="card-text">Brand: Mercedes-Benz<br>Daily Rent: $100</p>
-                            <a href="#" class="btn btn-primary">Rent Now</a>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="col-md-4">
-                    <div class="card">
-                        <img src="https://via.placeholder.com/350x200" class="card-img-top" alt="Car 2">
-                        <div class="card-body">
-                            <h5 class="card-title">SUV</h5>
-                            <p class="card-text">Brand: Toyota<br>Daily Rent: $80</p>
-                            <a href="#" class="btn btn-primary">Rent Now</a>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-4">
-                    <div class="card">
-                        <img src="https://via.placeholder.com/350x200" class="card-img-top" alt="Car 3">
-                        <div class="card-body">
-                            <h5 class="card-title">Economy Hatchback</h5>
-                            <p class="card-text">Brand: Honda<br>Daily Rent: $50</p>
-                            <a href="#" class="btn btn-primary">Rent Now</a>
-                        </div>
-                    </div>
-                </div>
+                <span class="text-danger text-center">No Car Available</span>
+                    
+                @endforelse 
+                
             </div>
         </div>
     </section>
