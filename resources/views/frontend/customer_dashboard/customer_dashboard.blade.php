@@ -11,7 +11,7 @@
                     <i class="fa fa-chart-line fa-3x text-primary"></i>
                     <div class="ms-3">
                         <p class="mb-2">Total Cars</p>
-                        <h6 class="mb-0">012</h6>
+                        <h6 class="mb-0">{{ $totalCars }}</h6>
                     </div>
                 </div>
             </div>
@@ -20,7 +20,7 @@
                     <i class="fa fa-chart-bar fa-3x text-primary"></i>
                     <div class="ms-3">
                         <p class="mb-2">Available Cars</p>
-                        <h6 class="mb-0">012</h6>
+                        <h6 class="mb-0">{{ $availableCars }}</h6>
                     </div>
                 </div>
             </div>
@@ -29,7 +29,7 @@
                     <i class="fa fa-chart-area fa-3x text-primary"></i>
                     <div class="ms-3">
                         <p class="mb-2">Total Rentals</p>
-                        <h6 class="mb-0">012</h6>
+                        <h6 class="mb-0">{{ $totalRentals }}</h6>
                     </div>
                 </div>
             </div>

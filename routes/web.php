@@ -1,5 +1,7 @@
 <?php
 
+use App\Models\Car;
+use App\Models\Rental;
 use GuzzleHttp\Psr7\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ProfileController;
@@ -72,10 +74,15 @@ Route::middleware(['auth','adminRole:admin'])->prefix('admin')->group(function (
 //customer all route
 Route::middleware(['auth','customerRole:customer'])->prefix('customer')->group(function () {
 
-    // Route::get('/dashboard', [CustomerController::class, 'index']);
-    Route::get('/dashboard', function () {
-        return view('frontend.customer_dashboard.customer_dashboard');
-    });
+    
+
+    Route::get('/dashboard', [CustomerDashboardController::class, 'index'])->name('dashboard');
+
+    // Route::get('/dashboard', function () {
+        
+
+    //     return view('frontend.customer_dashboard.customer_dashboard');
+    // });
 
 
     Route::get('/logout', [CustomerDashboardController::class, 'Logout'])->name('customer.logout');

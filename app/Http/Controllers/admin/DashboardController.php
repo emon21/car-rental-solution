@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers\admin;
 
-use App\Http\Controllers\Controller;
+use App\Models\Car;
+use App\Models\Rental;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 
 class DashboardController extends Controller
@@ -14,7 +16,20 @@ class DashboardController extends Controller
     public function index()
     {
         //
-        return view('admin.admin_dashboard');
+        $totalCars = Car::count();
+        $availableCars = Car::where('availability', true)->count();
+        $totalRentals = Rental::count();
+        $totalEarnings = Rental::where('status', 'Completed')->sum('total_cost');
+
+        $data = [
+            'totalCars' => $totalCars,
+            'availableCars' => $availableCars,
+            'totalRentals' => $totalRentals,
+            'totalEarnings' => $totalEarnings,
+        ];
+
+        return view('admin.admin_dashboard', $data);
+
     }
 
     /**

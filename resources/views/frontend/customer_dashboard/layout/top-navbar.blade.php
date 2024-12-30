@@ -39,13 +39,14 @@
         @endphp
         <div class="nav-item dropdown">
             <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">
-                <img class="rounded-circle me-lg-2" src="img/user.jpg" alt="" style="width: 40px; height: 40px;">
+                <img class="rounded-circle me-lg-2" src="{{ asset('admin/img/user.jpg') }}" alt="" style="width: 40px; height: 40px;">
                 <span class="d-none d-lg-inline-flex">{{ $user->name }}</span>
             </a>
             <div class="dropdown-menu dropdown-menu-end bg-light border-0 rounded-0 rounded-bottom m-0">
                 <a href="#" class="dropdown-item">My Profile</a>
                 <a href="#" class="dropdown-item">Settings</a>
-                <a href="{{ route('customer.logout') }}" class="dropdown-item">Log Out</a>
+                 <div class="dropdown-divider"></div>
+                <a href="{{ route('customer.logout') }}" class="dropdown-item text-white bg-danger">Log Out</a>
             </div>
         </div>
     </div>

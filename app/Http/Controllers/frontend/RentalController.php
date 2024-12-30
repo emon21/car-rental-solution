@@ -20,7 +20,7 @@ class RentalController extends Controller
     public function index()
     {
         //
-        $rentals = Rental::where('user_id',Auth::user()->id)->where('status','Pending')->with('car')->latest('id')->paginate(5);
+        $rentals = Rental::where('user_id', Auth::user()->id)->where('status', 'Pending')->with('car')->latest('id')->paginate(5);
         return view('frontend.customer_dashboard.rentals.index', compact('rentals'));
     }
 
@@ -31,7 +31,7 @@ class RentalController extends Controller
     {
         // $car = Car::findOrFail($carId);
         // return view('frontend.rentals.create', compact('car'));
-    }//end method
+    } //end method
     /**
      * Store a newly created resource in storage.
      */
@@ -55,7 +55,7 @@ class RentalController extends Controller
 
         //check if this car is available for selected date range
         if (!$this->isCarAvailable($car_id, $startDate, $endDate)) {
-           // Toastr::error('Car is not available for the selected dates');
+            // Toastr::error('Car is not available for the selected dates');
             return redirect()->back()->with('error', 'Sorry, this car is not available for the selected date range.');
         }
 
@@ -102,8 +102,9 @@ class RentalController extends Controller
             'cost' =>  $total_price,
         ];
 
-       // Mail::to(Auth::user()->email)->send(new RentConfirmMail($userMessage));
-        //Mail::to('mazbaul20@gmail.com')->send(new AdminConfirmMail($adminMessage));
+        Mail::to(Auth::user()->email)->send(new RentConfirmMail($userMessage));
+
+        Mail::to('emonbd66@gmail.com')->send(new AdminConfirmMail($adminMessage));
 
         return redirect()->route('customer.rentals')->with('success', 'Car booked Successfully');
     }
@@ -125,37 +126,7 @@ class RentalController extends Controller
             ->exists();
 
         return !$dateOverlap;
-    }//end method
-
-   
-
-    public function isCarAvailablex($carId, $startDate, $endDate, $rentalId = null)
-    {
-
-        // $dateOverLap = Rental::where('car_id',$carId)
-        // ->where('start_dat',$startDate)
-        // ->where('end_date',$endDate)->first();
-
-        $dateOverLap = Rental::where('user_id', $carId)
-
-            ->where(function ($query) use ($startDate, $endDate) {
-
-                $query->whereBetween('start_date', [$startDate, $endDate])
-
-                    ->orWhereBetween('end_date', [$startDate, $endDate])
-
-                    ->orWhere(function ($query) use ($startDate, $endDate) {
-                        $query->where('start_date', '<=', $startDate)
-                            ->where('end_date', '>=', $endDate);
-                    });
-            })
-
-            ->when($rentalId, function ($query) use ($rentalId) {
-                $query->where('id', '!=', $rentalId);
-            })
-            ->exists();
-        return !$dateOverLap;
-    }
+    } //end method
 
 
     public function CancelBooking(Request $request, Rental $rental)
@@ -172,10 +143,10 @@ class RentalController extends Controller
                 //Toastr::error('Booking already cenceled');
                 return redirect()->back();
             }
-           // Toastr::error('Sorry, this booking cannot be cancelled.');
+            // Toastr::error('Sorry, this booking cannot be cancelled.');
             return redirect()->back()->with('error', 'Sorry, this booking cannot be cancelled.');
         } else {
             abort(403, 'You are not authorized to cancel this booking.');
         }
-    }//end method
+    } //end method
 }
